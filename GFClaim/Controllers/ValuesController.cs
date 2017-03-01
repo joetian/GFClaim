@@ -12,7 +12,7 @@ namespace GFClaim.Controllers
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] { "first name", "peter", "Last Name", "John" };
+            return new string[] {"feature1 Branch", "first name", "peter", "Last Name", "John" };
         }
 
 
