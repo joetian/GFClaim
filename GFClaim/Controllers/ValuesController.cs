@@ -12,7 +12,7 @@ namespace GFClaim.Controllers
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] {"feature1 Branch after merge feature1 and edit master", "first name", "peter", "Last Name", "John" };
+            return new string[] {"PUBLISHED! feature1 Branch after merge feature1 and edit master", "first name", "peter", "Last Name", "John" };
         }
 
 
