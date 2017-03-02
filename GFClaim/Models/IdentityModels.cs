@@ -20,6 +20,12 @@ namespace GFClaim.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Provider> Providers { get; set; }
+        public DbSet<Claim> Claims { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<RevCode> RevCodes { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
