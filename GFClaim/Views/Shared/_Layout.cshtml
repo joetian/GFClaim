@@ -22,8 +22,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Claim Manager", "Index", "Patients")</li>
+                    <li>@Html.ActionLink("Provider Manager", "Index", "Provider")</li>
+                    <li>@Html.ActionLink("Patient Manager", "Index", "Patients")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -33,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - GFClaim! change from server</p>
+            <p>&copy; @DateTime.Now.Year - GFClaim</p>
         </footer>
     </div>
 

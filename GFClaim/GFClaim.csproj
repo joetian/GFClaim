@@ -171,6 +171,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -179,6 +180,22 @@
     <Compile Include="Migrations\201703020104328_initialDB.Designer.cs">
       <DependentUpon>201703020104328_initialDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703021611514_addRevCodeData.cs" />
+    <Compile Include="Migrations\201703021611514_addRevCodeData.Designer.cs">
+      <DependentUpon>201703021611514_addRevCodeData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703022303421_AddProviderTypeClass.cs" />
+    <Compile Include="Migrations\201703022303421_AddProviderTypeClass.Designer.cs">
+      <DependentUpon>201703022303421_AddProviderTypeClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703022305188_AddProviderTypeData.cs" />
+    <Compile Include="Migrations\201703022305188_AddProviderTypeData.Designer.cs">
+      <DependentUpon>201703022305188_AddProviderTypeData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703022310303_AddProvider.ProviderTypeId.cs" />
+    <Compile Include="Migrations\201703022310303_AddProvider.ProviderTypeId.Designer.cs">
+      <DependentUpon>201703022310303_AddProvider.ProviderTypeId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Claim.cs" />
@@ -186,6 +203,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Provider.cs" />
+    <Compile Include="Models\ProviderType.cs" />
     <Compile Include="Models\RevCode.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -194,6 +212,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap_Journal.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -247,6 +266,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Patients\New.cshtml" />
+    <Content Include="Views\Patients\Details.cshtml" />
+    <Content Include="Views\Patients\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -261,6 +284,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703020104328_initialDB.resx">
       <DependentUpon>201703020104328_initialDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703021611514_addRevCodeData.resx">
+      <DependentUpon>201703021611514_addRevCodeData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703022303421_AddProviderTypeClass.resx">
+      <DependentUpon>201703022303421_AddProviderTypeClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703022305188_AddProviderTypeData.resx">
+      <DependentUpon>201703022305188_AddProviderTypeData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703022310303_AddProvider.ProviderTypeId.resx">
+      <DependentUpon>201703022310303_AddProvider.ProviderTypeId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

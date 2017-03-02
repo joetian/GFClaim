@@ -20,14 +20,17 @@ namespace GFClaim.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        // 这里给出所有要PM>add-migration时要创建的表的dbset
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Claim> Claims { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<RevCode> RevCodes { get; set; }
+        public DbSet<ProviderType> ProviderTypes { get; set; }
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("MyConnection", throwIfV1Schema: false)  //"MyConnection"必须和Web.config的connectionString.Name相同
+                                                            // 把它指向另一个connectionString可以切换数据库
         {
         }
 

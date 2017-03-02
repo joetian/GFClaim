@@ -24,7 +24,7 @@ namespace GFClaim
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap_Journal.css",   // 这里修改自定义的CSS风格
                       "~/Content/site.css"));
         }
     }
