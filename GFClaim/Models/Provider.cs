@@ -26,6 +26,6 @@ namespace GFClaim.Models
         
         public string Phone { get; set; }
         
-        public string TaxId { get; set; }
+        public string TaxIdentity { get; set; }
     }
 }
