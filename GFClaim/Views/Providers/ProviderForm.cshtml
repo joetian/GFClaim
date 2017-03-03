@@ -1,0 +1,80 @@
+﻿@model GFClaim.ViewModels.ProviderFormViewModel
+@{
+    ViewBag.Title = "ProviderForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--此为New+Edit公用的View, 这里调用ProviderFormViewModel.ProviderFormTitle, 以便在New和Edit显示不同的标题-->
+<h2>@Model.ProviderFormTitle()</h2>
+
+<!-- BeginForm("按submit时调用的action名"， “controller名) -->
+@using (Html.BeginForm("Save", "Providers"))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(p => p.Provider.Name)
+        @Html.TextBoxFor(p => p.Provider.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Provider.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.Provider.ProviderType.Id)
+        @Html.DropDownListFor(p => p.Provider.ProviderTypeId, new SelectList(Model.ProviderTypes, "Id", "TypeName"), "select Provider Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Provider.ProviderTypeId)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.Provider.Address1)
+        @Html.TextBoxFor(p => p.Provider.Address1, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Provider.Address1)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Provider.Address2)
+        @Html.TextBoxFor(p => p.Provider.Address2, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Provider.Address2)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.Provider.City)
+        @Html.TextBoxFor(p => p.Provider.City, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Provider.City)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Provider.State)
+        @Html.TextBoxFor(p => p.Provider.State, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Provider.State)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Provider.Zipcode)
+        @Html.TextBoxFor(p => p.Provider.Zipcode, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Provider.Zipcode)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.Provider.Phone)
+        @Html.TextBoxFor(p => p.Provider.Phone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Provider.Phone)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Provider.TaxIdentity)
+        @Html.TextBoxFor(p => p.Provider.TaxIdentity, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Provider.TaxIdentity)
+    </div>
+    
+    
+    @Html.HiddenFor(p => p.Provider.Id, @Model.Provider.Id)
+    @Html.AntiForgeryToken()   // 这句防止HACK模拟输入
+    <button type="submit" value="Save" class="btn btn-primary">Save</button>
+}
+
+<!-- 加这句enable客户端的validation-->
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+

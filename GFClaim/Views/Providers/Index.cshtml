@@ -1,0 +1,25 @@
+﻿@model IEnumerable<GFClaim.Models.Provider>
+@{
+    ViewBag.Title = "Provider List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Provider List</h2>
+<a class="btn btn-default btn-lg" href="~/Providers/New">New Provider</a>
+<table class="table">
+    <tr><th>Provider</th><th>Provider Type</th><th>Phone</th><th>Tax ID</th><th></th></tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(p.Name, "Details", new {id=p.Id}, null)</td>
+            <td>@p.ProviderType.TypeName</td>
+            <td>@p.Phone</td>
+            <td>@p.TaxIdentity</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = p.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = p.Id }) |</td>
+        </tr>
+    }
+
+</table>
+
+

@@ -23,7 +23,9 @@ namespace GFClaim.Models
         public string State { get; set; }
         
         public string Zipcode { get; set; }
-        
+
+        [Phone]
+        [Display(Name = "Phone Number")]
         public string Phone { get; set; }
         
         public string TaxIdentity { get; set; }

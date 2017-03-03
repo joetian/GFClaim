@@ -49,7 +49,7 @@ namespace GFClaim.Models
         [RegularExpression(@"^(?!0+$)[0-9]{5,5}$")]
         public string Zipcode { get; set; }
 
-        [MaxLength(10)]
+        [Phone]
         public string Phone { get; set; }
 
         [RegularExpression(@"^(([^<>()[\]\\.,;:\s@""]+(\.[^<>()[\]\\.,;:\s@""]+)*)|("".+""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$")]

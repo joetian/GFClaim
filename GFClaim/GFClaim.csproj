@@ -172,6 +172,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PatientsController.cs" />
+    <Compile Include="Controllers\ProvidersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,6 +197,10 @@
     <Compile Include="Migrations\201703022310303_AddProvider.ProviderTypeId.Designer.cs">
       <DependentUpon>201703022310303_AddProvider.ProviderTypeId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703032324530_removePatient.PhoneMax.cs" />
+    <Compile Include="Migrations\201703032324530_removePatient.PhoneMax.Designer.cs">
+      <DependentUpon>201703032324530_removePatient.PhoneMax.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Claim.cs" />
@@ -208,6 +213,7 @@
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ProviderFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -270,6 +276,9 @@
     <Content Include="Views\Patients\New.cshtml" />
     <Content Include="Views\Patients\Details.cshtml" />
     <Content Include="Views\Patients\Edit.cshtml" />
+    <Content Include="Views\Providers\Index.cshtml" />
+    <Content Include="Views\Providers\Details.cshtml" />
+    <Content Include="Views\Providers\ProviderForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -296,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703022310303_AddProvider.ProviderTypeId.resx">
       <DependentUpon>201703022310303_AddProvider.ProviderTypeId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703032324530_removePatient.PhoneMax.resx">
+      <DependentUpon>201703032324530_removePatient.PhoneMax.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
