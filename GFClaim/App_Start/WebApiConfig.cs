@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -9,7 +11,9 @@ namespace GFClaim
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();   // CamelCasePropertyNamesContractResolver来自Newtonsoft.Json
+            config.Formatters.JsonFormatter.SerializerSettings.Formatting = Formatting.Indented;   // 来自Newtonsoft.Json.Serialization
+
 
             // Web API routes
             config.MapHttpAttributeRoutes();

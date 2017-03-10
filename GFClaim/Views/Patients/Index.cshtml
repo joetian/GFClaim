@@ -10,7 +10,7 @@
 <p>
     @Html.ActionLink("Create New Patient", "New")
 </p>
-<table class="table">
+<table class="table" id="PatientTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -20,6 +20,7 @@
         </th>
  
         <th></th>
+        <th>JS delete</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -30,13 +31,41 @@
         <td>
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
+
  
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
+        <td><button class="btn-link js-delete" data-patient-id="@item.Id" data-patient-name="@item.FirstName @item.LastName">JS delete</button></td>
     </tr>
 }
 
 </table>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function()
+        {
+            debugger;
+            $("#PatientTable .js-delete").on("click", function () {
+                button = $(this);
+                if (confirm("Are you sure delete patient : " + button.attr("data-patient-name")))
+                {
+                    $.ajax({
+                        url: "/api/patients/" + button.attr("data-patient-id"),
+                        method: "Delete",
+                        success : function ()
+                        {
+                            console.log("sucess delete patient" + button.attr("data-patient-name"));
+                            button.parents("tr").remove();  
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+
+}

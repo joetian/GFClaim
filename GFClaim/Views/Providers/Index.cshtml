@@ -1,4 +1,5 @@
-﻿@model IEnumerable<GFClaim.Models.Provider>
+﻿@model IEnumerable<GFClaim.Models.Provider>   
+           <!-- 这里难道不应该用 GFClaim.Dto.ProviderDto吗？-->
 @{
     ViewBag.Title = "Provider List";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,8 +7,8 @@
 
 <h2>Provider List</h2>
 <a class="btn btn-default btn-lg" href="~/Providers/New">New Provider</a>
-<table class="table">
-    <tr><th>Provider</th><th>Provider Type</th><th>Phone</th><th>Tax ID</th><th></th></tr>
+<table class="table" id="providersTable">
+    <tr><th>Provider</th><th>Provider Type</th><th>Phone</th><th>Tax ID</th><th></th><th>JS delete</th></tr>
     @foreach (var p in Model)
     {
         <tr>
@@ -17,9 +18,38 @@
             <td>@p.TaxIdentity</td>
             <td>@Html.ActionLink("Edit", "Edit", new { id = p.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = p.Id }) |</td>
+            <td><button data-provider-id="@p.Id" class="btn-link js-mydelete">JS Delete</button></td>
+            <!--  class="btn-link" bootstrap 把按键弄成LINK模样, js-mydelete是为了下面JS调用-->
         </tr>
     }
-
 </table>
+
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            debugger;
+
+            $("#providersTable .js-mydelete").on("click", function () {
+                var btn = $(this);
+                if (confirm("delete this provider?")) {
+                    $.ajax({
+                        url: "/api/providers/" + btn.attr("data-provider-id"),
+                        method: "Delete",
+                        success : function ()
+                        {
+                            console.log("sucess " + btn.attr("data-provider-id"));
+                            btn.parents("tr").remove();   // 天啊，错写成btn.parent单数，就删不掉那行，且什么错都不出
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+
+
+}
 
 
