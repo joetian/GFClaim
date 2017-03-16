@@ -7,7 +7,7 @@
 
 <h2>Edit Patient</h2>
 
-<!-- 这里指回POST时调用的Action名和Controller名-->
+<!-- 这里指回POST时调用的Action名和Controller名, 使用using才能生成dispose Form-->
 @using (Html.BeginForm("Save", "Patients"))
 {
     @Html.AntiForgeryToken()

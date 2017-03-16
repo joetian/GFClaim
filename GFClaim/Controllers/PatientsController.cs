@@ -30,6 +30,12 @@ namespace GFClaim.Controllers
             return View(patients);
         }
 
+        // GET: Patients index by call web api
+        public ActionResult IndexWithWebApi()
+        {
+            return View();
+        }
+
         public ActionResult New()
         {
             Patient patient = new Patient();
