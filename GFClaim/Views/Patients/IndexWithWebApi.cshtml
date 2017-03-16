@@ -1,0 +1,86 @@
+﻿@model IEnumerable<GFClaim.Models.Patient>
+
+@{
+    ViewBag.Title = "Patient List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Patient List with Web API</h2>
+
+<p>
+    @Html.ActionLink("Create New Patient", "New")
+</p>
+<table class="table" id="PatientTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Birthday</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function()
+        {
+            debugger;
+            var table = $("#PatientTable").DataTable({
+                ajax: {
+                    url: "/api/patients",
+                    dataSrc: ""     // 当JSON数据需要进一层才能找到需要LIST数据，在这里填入那LIST的KEY. 写成datasrc就完蛋
+                },
+                columns: [
+                    {
+                        data: "firstName" ,   // 似乎并没有用啊
+                        // render定义如何显示数据的function, 带三参数，1. data是上面key的value, 2. value的type, 3. 那行数据的class名
+                        render: function (data, type, patient) {
+                            return "<a href='/Patients/Edit/" + patient.id + "'>" + patient.firstName + ' ' + patient.lastName + "</a>";
+                            // patient这object是JSON数据赋值的，所以id，而不是Patient.Id, 别大写，属性要统统camelNotation
+                        }
+                    },
+                    {
+                        data : "gender"
+                    },
+                    {
+                        data : "birthday"
+                    },
+                    {
+                        data: "id",
+                        //这里render只带一参数，因为只用了id
+                        render: function (data, type, patient)
+                        {
+                            return "<button class='btn btn-link js-delete' data-patient-id=" + data + " data-patient-name='" + patient.firstName +"'>API delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            // 这里，把on的click handler附在PatientTable，然后 on里加上filter:js-delete, 而不是在每一行的patient row上以节省内存
+            //$("#PatientTable .js-delete").on("click", function () {
+            $("#PatientTable").on("click", ".js-delete", function () {
+                button = $(this);
+                //这里用bootbox替代JS丑confirm   if (confirm("Are you sure delete patient : " + button.attr("data-patient-id")))
+                bootbox.confirm("Are you sure delete patient : " + button.attr("data-patient-name"), function (result)
+                {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/patients/" + button.attr("data-patient-id"),
+                            method: "Delete",
+                            success: function () {
+                                console.log("sucess delete patient" + button.attr("data-patient-name"));
+                                //button.parents("tr").remove();
+                                table.row(button.parents("tr")).remove().draw();   //JS一定注意大小写和单复数，第一次写成parent, 不工作也不出错
+                            }
+                        })
+                    }
+                })
+            })
+        })
+    </script>
+
+}
