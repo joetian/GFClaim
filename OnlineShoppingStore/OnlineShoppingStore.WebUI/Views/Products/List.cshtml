@@ -1,0 +1,22 @@
+﻿@model OnlineShoppingStore.WebUI.Models.ProductsListViewModel
+<!-- 这里传递过来一个modelView，包含products 和 pageInfo, 需要加using，或者去views\webConfig里加 -->
+       
+@{
+    ViewBag.Title = "Products List";
+}
+@foreach (var p in Model.Products)
+{
+    <div>
+        <h3>@p.Name</h3>
+        <h4>@p.Price.ToString("c")</h4>
+        @p.Description
+    </div>
+}
+
+<div>
+    <!-- 注意此处没有code completion, PageLinks是在PagingHelpers里定义的extention method， 依附在HtmlHelper上 -->
+    @Html.PageLinks(Model.pageInfo, x=>Url.Action("List", new {page=x}))
+</div>
+
+@Html.Test("hello world")
+
