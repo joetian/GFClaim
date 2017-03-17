@@ -4,8 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Online Shopping Store</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    @RenderBody()
+    <div class="navbar navbar-inverse" role="navigation">
+        <a class="navbar-brand" href="#">Online Shopping Store</a>
+    </div>
+    <div class="row panel">
+        <div id="categories" class="col-lg-3">Categories</div>
+        <div class="col-lg-7">
+            @RenderBody()
+        </div>
+
+    </div>
+ 
 </body>
 </html>

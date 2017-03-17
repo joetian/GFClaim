@@ -6,17 +6,13 @@
 }
 @foreach (var p in Model.Products)
 {
-    <div>
-        <h3>@p.Name</h3>
-        <h4>@p.Price.ToString("c")</h4>
-        @p.Description
-    </div>
+    @Html.Partial("ProductSummary", p);
 }
 
-<div>
+<div class="btn-group pull-right">  <!-- btn-group让三个按键无缝 -->
     <!-- 注意此处没有code completion, PageLinks是在PagingHelpers里定义的extention method， 依附在HtmlHelper上 -->
-    @Html.PageLinks(Model.pageInfo, x=>Url.Action("List", new {page=x}))
+    @Html.PageLinks(Model.pageInfo, x => Url.Action("List", new { page = x }))
 </div>
 
-@Html.Test("hello world")
+
 
