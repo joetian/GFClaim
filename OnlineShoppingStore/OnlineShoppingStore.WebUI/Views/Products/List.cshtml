@@ -10,8 +10,12 @@
 }
 
 <div class="btn-group pull-right">  <!-- btn-group让三个按键无缝 -->
-    <!-- 注意此处没有code completion, PageLinks是在PagingHelpers里定义的extention method， 依附在HtmlHelper上 -->
-    @Html.PageLinks(Model.pageInfo, x => Url.Action("List", new { page = x }))
+    <!-- 1. 注意此处没有code completion, PageLinks是在PagingHelpers里定义的extention method， 依附在HtmlHelper上 		
+        2. string s = Url.Action("List", new { page = 1, category = "woman" }); Url.Action简单返回字串：\List?page=1&category=woman
+        pageUrl(i)	
+        "/Products/List?page=1"	string
+-->
+    @Html.PageLinks(Model.pageInfo, x => Url.Action("List", new { page = x, category = Model.CurrentCategory}))
 </div>
 
 

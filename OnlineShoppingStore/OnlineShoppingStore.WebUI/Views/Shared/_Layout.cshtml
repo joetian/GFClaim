@@ -11,11 +11,12 @@
         <a class="navbar-brand" href="#">Online Shopping Store</a>
     </div>
     <div class="row panel">
-        <div id="categories" class="col-lg-3">Categories</div>
-        <div class="col-lg-7">
-            @RenderBody()
+        <div id="categories" class="col-lg-3">
+            @Html.Action("Menu", "Navs")   <!-- 显示NavsController里Menu Action的返回值-->
         </div>
-
+        <div class="col-lg-7">
+            @RenderBody()   <!-- 显示任何使用这个Layout的View里的内容-->
+        </div>
     </div>
  
 </body>

@@ -19,20 +19,42 @@ namespace OnlineShoppingStore.WebUI.Controllers
         }
 
         // GET: Products
-        public ViewResult List(int page=1)
+        public ViewResult List(string category, int page=1)
         {
-            ProductsListViewModel model = new ProductsListViewModel
-            {
-                Products = repository.Products.OrderBy(p => p.ProductId).Skip((page - 1) * PageSize).Take(PageSize),
-                pageInfo = new PagingInfo
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = PageSize,
-                    TotalItems = repository.Products.Count()
-                }
-            };
+            string s = Url.Action("List", new { page = 1, category = "woman" });
 
-            return View(model);
+            if (category == null)
+            {
+                ProductsListViewModel model = new ProductsListViewModel
+                {
+                    Products = repository.Products.OrderBy(p => p.ProductId).Skip((page - 1) * PageSize).Take(PageSize),
+                    pageInfo = new PagingInfo
+                    {
+                        CurrentPage = page,
+                        ItemsPerPage = PageSize,
+                        TotalItems = repository.Products.Count()
+                    },
+                    CurrentCategory = category
+                };
+                return View(model);
+            }
+            else
+            {
+                ProductsListViewModel model = new ProductsListViewModel
+                {
+                    Products = repository.Products.Where(p => p.Category == category).OrderBy(p => p.ProductId).Skip((page - 1) * PageSize).Take(PageSize),
+                    pageInfo = new PagingInfo
+                    {
+                        CurrentPage = page,
+                        ItemsPerPage = PageSize,
+                        TotalItems = repository.Products.Count()
+                    },
+                    CurrentCategory = category
+                };
+                return View(model);
+            }
+
+            
         }
     }
 }
